@@ -1,0 +1,192 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "TP Analyse spectrale",
+    "section": "",
+    "text": "Bases des hyperfréquences : de la théorie à la pratique\nCe cours de cinq jours permet aux professionnels non spécialistes de comprendre les principes fondamentaux des hyperfréquences. Toutes les explications reposent sur des descriptions physiques simples, sans mathématiques complexes. Cette formation vise à rendre les participants autonomes dans l’utilisation des instruments RF et à leur fournir des bases en hyperfréquences.\nCe document repose en partie sur des formations organisées à l’IUT de Ville-d’Avray pour la Licence Professionnelle Mesures Hyperfréquences et Radiocommunications (LP MHR), et au Centre de Formation de la Défense.\nMots-clés\nRésumé : Ce document est un guide de travaux pratiques (TP) sur l’analyse spectrale, utilisant un analyseur de spectre et un générateur RF. Il détaille la mesure de différents signaux : ondes continues, signaux à deux tons, signaux radar, et paires d’impulsions. L’objectif est d’apprendre à utiliser l’analyseur de spectre, comprendre ses paramètres (RBW, VBW, SWT, etc.), et analyser les relations entre les domaines temporel et fréquentiel. Des mesures de pureté spectrale et d’analyse de signaux composites sont également incluses.",
+    "crumbs": [
+      "Bases des hyperfréquences : de la théorie à la pratique"
+    ]
+  },
+  {
+    "objectID": "index.html#auteur",
+    "href": "index.html#auteur",
+    "title": "TP Analyse spectrale",
+    "section": "Auteur",
+    "text": "Auteur\nFranck Daout est enseignant-chercheur à l’Université Paris 10 Nanterre, à l’IUT de Ville-d’Avray. Il est responsable de la Licence Professionnelle Mesures Hyperfréquences et Radiocommunications.",
+    "crumbs": [
+      "Bases des hyperfréquences : de la théorie à la pratique"
+    ]
+  },
+  {
+    "objectID": "index.html#conditions-dutilisation",
+    "href": "index.html#conditions-dutilisation",
+    "title": "TP Analyse spectrale",
+    "section": "Conditions d’utilisation",
+    "text": "Conditions d’utilisation\n Ce travail est soumis à la licence Creative Commons Attribution 4.0 International License.",
+    "crumbs": [
+      "Bases des hyperfréquences : de la théorie à la pratique"
+    ]
+  },
+  {
+    "objectID": "TP_base_AS.html",
+    "href": "TP_base_AS.html",
+    "title": "Prise en main de l’analyseur de spectre",
+    "section": "",
+    "text": "Mesure du spectre d’une onde CW\nLa Figure 1 présente le montage proposé. Le générateur peut être remplacé par une carte SDR ADALM PLUTO.\nMatériel",
+    "crumbs": [
+      "Prise en main de l'analyseur de spectre"
+    ]
+  },
+  {
+    "objectID": "TP_base_AS.html#mesure-du-spectre-dune-onde-cw",
+    "href": "TP_base_AS.html#mesure-du-spectre-dune-onde-cw",
+    "title": "Prise en main de l’analyseur de spectre",
+    "section": "",
+    "text": "Figure 1: Mesure du spectre d’une onde CW\n\n\n\n\n\nSynthétiseur R&S SMB100A.\nAnalyseur de spectre R&S FSP (avec atténuateur 10dB + DC block).\nAdaptateurs N-SMA.\n1 cordon SMA.\n\n\n\n\n\n\n\nPréparation\n\n\n\n\n\nSoit le signal CW suivant :\n\\[\nu(t) = 0,447 \\cos(1,6 \\times 10^9\\pi t)\n\\tag{1}\\]\nDéterminer :\n\nLa fréquence, la période et la valeur efficace.\nEn supposant une impédance de 50 Ω, déterminer la puissance en dBm.\nLa fréquence et la puissance de ce signal sont-elles dans le domaine d’utilisation de l’analyseur de spectre (indiquer les valeurs limites) ?\nReprésenter \\(u(t)\\) ainsi que le spectre unilatéral en amplitude.\nIndiquer les réglages a priori à effectuer sur l’analyseur pour afficher correctement le spectre.\n\n\n\n\n\nMise en œuvre de la mesure\nLa mise en œuvre de la mesure est réalisée en respectant les trois étapes suivantes :\n\nRéglage du générateur.\nRéglage de l’analyseur de spectre.\nMesure et analyse des résultats.\n\nLa Figure 2 présente les appareils utilisés pour réaliser la mesure de l’onde CW.\n\n\n\n\n\n\n\n\n\n\n\n(a) Générateur RF SMB100A\n\n\n\n\n\n\n\n\n\n\n\n(b) Analyseur de spectre FSP\n\n\n\n\n\n\n\nFigure 2: Appareils Utilisés\n\n\n\n\nRéglages du générateur\n\nFaire un “preset” sur le générateur.\nRégler la fréquence.\nRégler la puissance.\nMettre le générateur sur RF OFF (si ce n’est pas déjà le cas).\n\n\n\nRéglage de l’analyseur de spectre :\n\nFaire un “preset” sur l’appareil.\nRelever les valeurs de : REF LEV, RF ATT, RBW, VBW, SWT, SPAN et de la fréquence centrale Fc.\nFaire les réglages suivants :\n\n\n\n\nTable 1: setup de l’analyseur de spectre\n\n\n\n\n\nParamètre\nValeur\n\n\n\n\nFc\n800 MHz\n\n\nSPAN\n100 MHz\n\n\nREF LEV\n0 dBm\n\n\nRF ATT\n10 dB\n\n\nRBW\n1MHz\n\n\nVBW\n100 kHz\n\n\n\n\n\n\n\nRelever la valeur de SWT et calculer la quantité \\(\\frac{SPAN}{RBW \\times VBW}\\) et comparer à SWT.\n\n\n\nRéaliser la mesure du signal :\n\nVérifier que le DC block et l’atténuateur sont bien connectés.\nRelier le générateur à l’analyseur de spectre avec un cordon SMA.\nRéaliser un schéma de mesure en précisant la référence de chaque appareil et leurs réglages.\nMettre le générateur RF ON.\nRéaliser la mesure :\n\nRégler l’échelle log pour avoir 10 dB par division.\nUtiliser le menu marker pour relever la fréquence et la puissance du signal affiché sur l’analyseur de spectre.\nExpliquer la différence entre la valeur attendue et la valeur observée. Ne pas oublier de prendre en compte la valeur de l’atténuateur extérieur associé au DC Block.\n\nMesure précise de la fréquence. Un analyseur de spectre n’est pas un fréquencemètre. Cependant certains appareils possèdent cette fonction (Freq Count) : elle est obtenue avec le menu marker.\n\nAfficher le marker 1.\nDans le menu marker, choisir le menu SIGNAL COUNT.\nDans la suite du menu marker (bouton next), choisir une résolution du compteur de 1Hz (CNT Resol 1 Hz).\nRelever la fréquence et la puissance du signal. Comparer aux valeurs précédentes et commenter.\n\n\n\n\nAnalyse : Pertes d’insertion\nÀ partir de la mesure précédente, déterminer les pertes par rapport à la valeur théorique, conclure quant à la validité de la mesure.",
+    "crumbs": [
+      "Prise en main de l'analyseur de spectre"
+    ]
+  },
+  {
+    "objectID": "TP_base_AS.html#spectre-du-signal-généré-par-le-smb100",
+    "href": "TP_base_AS.html#spectre-du-signal-généré-par-le-smb100",
+    "title": "Prise en main de l’analyseur de spectre",
+    "section": "Spectre du signal généré par le SMB100",
+    "text": "Spectre du signal généré par le SMB100\nVous allez observer une imperfection du synthétiseur SMB100A : sa pureté spectrale. Vous allez notamment mesurer les harmoniques présentes dans le signal. Les spécifications du générateur sont disponibles via ce lien\n\nDéterminer les fréquences des harmoniques que l’on peut visualiser avec votre analyseur de spectre en plus de la fréquence fondamentale.\nRégler les valeurs du SPAN à 3 GHz et de la fréquence centrale à 1,5 GHz, sans changer les autres réglages de l’analyseur et du générateur afin d’observer un maximum d’harmoniques.\n\nPourquoi la raie à f = 0 Hz ne fait pas partie du spectre du signal issu du générateur ? En fait cette raie apparaît sur certains analyseurs en fonction de la technologie.\nVisualise-t-on toutes les raies attendues ?\nPour chaque harmonique n &gt; 1 :\n\nEffectuer les réglages pour n’observer qu’une seule raie sur l’écran ;\nMesurer la fréquence et la puissance de la raie en dBc, en indiquant les réglages de l’Analyseur de spectre.\n\nCes résultats sont-ils cohérents avec la documentation constructeur du SMB100 ?\nPour n=3 faire les réglages de la Table 2.\n\nMesurer le niveau de la raie ;\nCalculer la quantité \\(\\frac{SPAN}{RBW \\times VBW}\\) et comparer à SWT ; conclusion ?\n\n\n\n\n\n\nTable 2: Setup de l’analyseur de spectre.\n\n\n\n\n\nParamètre\nValeur\n\n\n\n\nFc\n2,4 GHz\n\n\nSPAN\n50 MHz\n\n\nREF LEV\n0 dBm\n\n\nRF ATT\n10 dB\n\n\nRBW\n1MHz\n\n\nVBW\n1 kHz\n\n\nSWP\n5 ms\n\n\nRange Log\n40 dB",
+    "crumbs": [
+      "Prise en main de l'analyseur de spectre"
+    ]
+  },
+  {
+    "objectID": "TP_base_AS.html#spectre-de-la-bande-fm",
+    "href": "TP_base_AS.html#spectre-de-la-bande-fm",
+    "title": "Prise en main de l’analyseur de spectre",
+    "section": "Spectre de la bande FM",
+    "text": "Spectre de la bande FM\nLa bande FM occupe un spectre compris entre 87,8 MHz et 107,5 MHz. L’objectif ici est de visualiser et mesurer quelques raies associées à certaines radios. Sur ce site sont indiquées les fréquences ainsi que les puissances émises par les radios FM de votre ville.\n\nMise en œuvre de la mesure\n\n\n\n\n\n\nFigure 3: Spectre de la bande FM\n\n\n\nL’antenne sera un simple cordon électrique (fiches bananes) que l’on relie à l’entrée de l’analyseur via des adaptateurs adéquats (Figure 3).\n\n\n\n\n\n\nPréparation\n\n\n\n\n\nÀ partir du tableau des fréquences du site déterminer :\n\nla fréquence centrale du spectre,\nl’étendue en fréquence,\nl’écart minimum entre deux fréquences.\n\n\n\n\n\n\nAnalyse\n\nDéduire des réponses précédentes les réglages préliminaires à effectuer sur l’analyseur de spectre pour visualiser toute la bande FM.\nAffiner les réglages afin de visualiser les différentes raies spectrales.\nRelever la puissance pour deux radios. Estimer les pertes en espace libre pour chaque radio.\n\n\n\n\nFigure 1: Mesure du spectre d’une onde CW\nFigure 2 (a): Générateur RF SMB100A\nFigure 2 (b): Analyseur de spectre FSP\nFigure 3: Spectre de la bande FM",
+    "crumbs": [
+      "Prise en main de l'analyseur de spectre"
+    ]
+  },
+  {
+    "objectID": "TP_resolution_AS.html",
+    "href": "TP_resolution_AS.html",
+    "title": "Signal “composite”",
+    "section": "",
+    "text": "Analyse d’un spectre\nIl s’agit, dans cette partie, de créer un signal composite dont le spectre d’amplitude est représenté sur la Figure 1",
+    "crumbs": [
+      "Signal \"composite\""
+    ]
+  },
+  {
+    "objectID": "TP_resolution_AS.html#analyse-dun-spectre",
+    "href": "TP_resolution_AS.html#analyse-dun-spectre",
+    "title": "Signal “composite”",
+    "section": "",
+    "text": "Figure 1: Spectre d’un signal composite\n\n\n\n\n\nAnalyse théorique\nÀ partir de la Figure 1 :\n\nDéterminer la nature du spectre (bilatéral, unilatéral, d’amplitude, de phase ?).\nDéterminer les réglages de l’analyseur de spectre (atténuateur, niveau de référence, span, RBW, VBW, fréquence centrale, type de l’appareil de mesure). Il s’agit de la configuration de l’appareil (Spectrum Analyzer Setup).\nRechercher dans la documentation les caractéristiques de l’analyseur de spectre utilisé (FSP3) :\n\n\n\n\nTable 1: Caractéristiques de l’analyseur de spectre\n\n\n\n\n\nParamètre\nValeur\n\n\n\n\nPlage de fréquence\n9 kHz à 3 GHz\n\n\nBandes passantes de résolution\n\n\n\nBandes passantes vidéo\n\n\n\nNiveau de référence (dBm)\n\n\n\n\n\n\n\n\nDéterminer le nombre de raies et leurs caractéristiques (fréquence, puissance)\nExprimer le signal sous forme d’une série de cosinus telle que :\n\\[\nu(t) = A_1 \\cos(2\\pi f_1t) + ... + A_n \\cos(2\\pi f_nt)\n\\tag{1}\\]\n\n\n\nExpérimentation\n\nProposer un montage qui permet d’obtenir ce signal. Pour cela, on utilisera un combinateur (additionneur).\nIndiquer les réglages des différents appareils de mesure.\nRéaliser le montage et vérifier vos réglages.\nRéaliser une fiche de mesure qui permet de synthétiser votre mesure. Cette fiche doit permettre à n’importe qui de refaire votre mesure afin de retrouver vos résultats. Il convient donc d’indiquer :\n\nun schéma du montage (photographie),\nles références des appareils de mesures (y compris la référence IUT),\ntous les réglages des appareils de mesure,\nvos résultats,\nvos commentaires sur la mesure.",
+    "crumbs": [
+      "Signal \"composite\""
+    ]
+  },
+  {
+    "objectID": "TP_resolution_AS.html#résolution-spectrale-dun-analyseur-de-spectre",
+    "href": "TP_resolution_AS.html#résolution-spectrale-dun-analyseur-de-spectre",
+    "title": "Signal “composite”",
+    "section": "Résolution spectrale d’un analyseur de spectre",
+    "text": "Résolution spectrale d’un analyseur de spectre\nDans cette partie, nous allons observer l’effet du filtre de résolution (RBW) lorsque l’on mesure deux signaux de fréquences différentes mais d’amplitudes identiques. La Figure 2 permet de réaliser cette étude.\n\n\n\n\n\n\nFigure 2: Effet du RBW\n\n\n\n\nInfluence du RBW\n\nRéaliser le montage de la Figure 2. Régler le premier générateur pour voir une fréquence de 800 MHz avec une amplitude de -20 dBm. Le second générateur est réglé pour un signal à une fréquence de 801 MHz avec une amplitude de -20 dBm.\nAprès avoir fait un “preset” sur l’analyseur de spectre, régler uniquement la fréquence centrale, le span ainsi que le niveau de référence pour pouvoir visualiser le signal. Régler le rapport RBW/VBW : pour cela, appuyer sur le bouton BW, puis aller dans le menu COUPLING RATIO, choisir le menu RBW/VBW MANUAL. Choisir la valeur 100.\n\nIndiquez la configuration de l’analyseur de spectre.\nCommentez vos observations.\n\nEn faisant varier le RBW (bouton BW) sans modifier les autres réglages, compléter le Table 2, Que faut-il en conclure ?\n\n\n\n\nTable 2: Influence du RBW\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRBW\n10 MHz\n3 MHz\n1 MHz\n300 kHz\n100 kHz\n30 kHz\n10 kHz\n\n\n\n\nFréquence f1 (MHz)\n\n\n\n\n\n\n\n\n\nPuissance P1 (dBm)\n\n\n\n\n\n\n\n\n\nFréquence f2 (MHz)\n\n\n\n\n\n\n\n\n\nPuissance P2 (dBm)\n\n\n\n\n\n\n\n\n\nCreux (dBm)\n\n\n\n\n\n\n\n\n\nTemps de balayage (ms)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRelation entre le temps de balayage, le RBW et le SPAN : il y a un compromis à faire entre le RBW et le temps de balayage. Si on réduit le RBW, le temps de balayage augmente. Cela est dû au temps nécessaire pour que le signal s’établisse dans le filtre. Généralement, on admet :\n\n\\[\n\\text{Temps de balayage} = k \\times \\frac{\\text{SPAN}}{\\text{RBW} \\times \\text{VBW}}\n\\tag{2}\\]\navec k variant en fonction du type de filtre.\nDéterminer la valeur de k pour les différentes valeurs de RBW &lt; 1MHz.\nGénéralement, les analyseurs de spectre calculent automatiquement le temps de balayage en fonction du RBW, mais ils autorisent de choisir indépendamment le temps de balayage et le RBW. Dans ce cas, la réponse de l’analyseur peut être non calibrée et il peut y avoir des erreurs sur la fréquence et sur l’amplitude. Pour observer ce phénomène, mettre le générateur 2 sur OFF et choisir une configuration avec un temps de balayage trop rapide ;\n\nQue se passe-t-il pour les valeurs de la puissance et de la fréquence ? Après avoir fait cette manipulation, penser à remettre le temps de balayage en mode automatique.",
+    "crumbs": [
+      "Signal \"composite\""
+    ]
+  },
+  {
+    "objectID": "TP_resolution_AS.html#dynamique-dun-analyseur-de-spectre",
+    "href": "TP_resolution_AS.html#dynamique-dun-analyseur-de-spectre",
+    "title": "Signal “composite”",
+    "section": "Dynamique d’un analyseur de spectre",
+    "text": "Dynamique d’un analyseur de spectre\nLe premier élément important d’un analyseur de spectre est l’atténuateur interne. Son rôle est de s’assurer que le signal qui entre dans le mélangeur possède le niveau optimal pour éviter une surcharge, une compression et une distorsion. Comme l’atténuateur est un circuit de protection de l’analyseur de spectre, il est généralement réglé automatiquement en fonction du niveau de référence. Toutefois, une sélection manuelle est aussi possible par paliers. Le palier dépend du type d’analyseur de spectre.\nLe niveau de référence est le niveau maximum de puissance (ou de tension) que l’on cherche à visualiser. Il correspond à la ligne horizontale supérieure de l’écran. Il est possible de choisir l’unité affichée (dBm, dBV, W, ou V).\nEn utilisant le montage de la Figure 2, régler le synthétiseur SMB100A sur -20 dBm avec une fréquence de 800 MHz et le synthétiseur HP8648A sur -70 dBm pour une fréquence de 800,075 MHz.\n\nQuels sont les réglages qui permettent d’observer correctement ce signal ? Indiquer la configuration de l’analyseur de spectre (niveau de référence, atténuateur, span, fréquence centrale, RBW, VBW)\nLe RBW est maintenant réglé à 30 kHz. Le synthétiseur HP8648A est réglé à -20 dBm.\n\nEst-il possible de distinguer les deux raies ? (un critère consiste à mesurer l’amplitude du creux. Il doit être inférieure de 3dB au pic le plus faible pour pouvoir distinguer les deux signaux).\nDiminuer la puissance sur le générateur HP8648A, jusqu’à ce qu’on ne puisse plus distinguer les deux raies. Quelle est cette valeur ?\nQu’observe-t-on pour une puissance de -70 dBm ?\nQue faut-il faire pour observer les deux signaux ?\nRefaire la même étude pour un RBW réglé à 10 kHz.\n\nLe RBW est maintenant réglé à 10 kHz. Nous allons chercher à déterminer la puissance minimum que notre analyseur de spectre peut mesurer (le plancher de bruit).\n\nQuelle est la puissance minimale que l’on peut mesurer (le plancher de bruit) ?\nQue devient cette puissance si on diminue le RBW d’un facteur 10 (1 kHz) ?\nComparer cette valeur à la valeur précédente. Que peut-on dire du plancher de bruit ? Que peut-on dire du temps de balayage ?\n\nSur quel(s) paramètre(s) peut-on agir pour augmenter la sensibilité ?",
+    "crumbs": [
+      "Signal \"composite\""
+    ]
+  },
+  {
+    "objectID": "TP_resolution_AS.html#application-mesure-du-gabarit-dun-filtre-passe-bande-avec-la-fonction-maximum-hold",
+    "href": "TP_resolution_AS.html#application-mesure-du-gabarit-dun-filtre-passe-bande-avec-la-fonction-maximum-hold",
+    "title": "Signal “composite”",
+    "section": "Application : Mesure du gabarit d’un filtre passe-bande avec la fonction Maximum Hold",
+    "text": "Application : Mesure du gabarit d’un filtre passe-bande avec la fonction Maximum Hold\nLa fonction Maximum Hold peut être d’une utilité importante lorsque vous mesurez la réponse fréquentielle d’éléments passifs tels qu’un filtre. Pour cela, il est nécessaire de générer un signal avec un générateur RF (Figure 3) et d’enregistrer la réponse du DUT (Device Under Test : le filtre ici) avec votre analyseur de spectre. Comme la vitesse de balayage du générateur et celle de l’analyseur ne sont pas synchrones, la fonction Maximum Hold permet de tracer la réponse du DUT (généralement après deux à trois balayages).\n\n\n\n\n\n\nFigure 3: Mesure du gabarit d’un filtre\n\n\n\n\nExpérimentation\n\nConnecter à l’entrée de l’analyseur de spectre un filtre SHP-700+\nRégler le SMB100A pour qu’il réalise un balayage de 100 MHz à 3 GHz\nAnalyser le résultat\n\n\n\n\nFigure 1: Spectre d’un signal composite\nFigure 2: Effet du RBW\nFigure 3: Mesure du gabarit d’un filtre",
+    "crumbs": [
+      "Signal \"composite\""
+    ]
+  },
+  {
+    "objectID": "TP_radar.html",
+    "href": "TP_radar.html",
+    "title": "Signal “radar”",
+    "section": "",
+    "text": "Présentation de l’activité\nDans ce TP, nous allons chercher à caractériser l’impulsion radar avec un analyseur de spectre. Le montage proposé est présenté sur la Figure 1.",
+    "crumbs": [
+      "Signal \"radar\""
+    ]
+  },
+  {
+    "objectID": "TP_radar.html#présentation-de-lactivité",
+    "href": "TP_radar.html#présentation-de-lactivité",
+    "title": "Signal “radar”",
+    "section": "",
+    "text": "Figure 1: Mesure proposée avec l’analyseur de spectre\n\n\n\n\nCaractéristiques temporelles\nLa Figure 2 présente les caractéristiques temporelles “puissance” de l’impulsion.\n\n\n\n\n\n\nFigure 2: Caractéristiques temporelles (fig. extraite de Keysight)\n\n\n\nLe calcul de la puissance de l’impulsion se déduit de la puissance moyenne (voir Figure 3)\n\n\n\n\n\n\nFigure 3: Exemple numérique - la puissance moyenne est mesurée avec une sonde (fig. extraite de Keysight)\n\n\n\n\n\nCaractéristiques fréquentielles\nLa Figure 4 présente l’aspect fréquentiel de l’impulsion radar ainsi que les relations entre le domaine temps et fréquence.\n\n\n\n\n\n\nFigure 4: Caractéristiques fréquentielles (fig. extraite de Keysight)",
+    "crumbs": [
+      "Signal \"radar\""
+    ]
+  },
+  {
+    "objectID": "TP_radar.html#démarche-expérimentale",
+    "href": "TP_radar.html#démarche-expérimentale",
+    "title": "Signal “radar”",
+    "section": "Démarche expérimentale",
+    "text": "Démarche expérimentale\nLe montage proposé pour réaliser cette activité est celui de la Figure 1.\n\nAspect temporel\n\nFaire un Preset sur l’analyseur de spectre.\nRégler l’analyseur de spectre avec la configuration suivante (center frequency = 2400MHz, Span = 0 Hz, Ref.lev. = 10 dBm, RBW = 10 MHz, VBW = 10MHz, SWT = 100 us ).\nConnecter la carte pluto à l’analyseur de spectre.\nActiver le programme GnuRadio companion TX_impulse_radar.grc.\nAdapter le Ref. lev. de l’analyseur de spectre.\n\n\n\n\n\n\n\nApplication\n\n\n\nAprès avoir correctement configuré l’analyseur de spectre, déterminer les caractéristiques temporelles du signal radar :\n\nLargeur d’impulsion, en déduire la résolution distance.\nPRI, en déduire la PRF et l’ambiguïté distance.\nLa puissance “de l’impulsion”, en déduire la puissance moyenne.\n\nEst-il possible de visualiser cette impulsion avec un oscilloscope ?\nModifier dans le programme GnuRadio companion TX_impulse_radar.grc, la variable tau qui correspond à la largeur d’impulsion, que peut-on dire de la résolution distance, de l’ambiguïté distance et de la puissance moyenne.\n\n\n\n\nAspect fréquentiel\n\nRégler la largeur d’impulsion à 10 us.\nModifier les réglages de l’analyseur de spectre ainsi : center frequency = 2400MHz, Span = 1 MHz, Ref.lev. = conserver la valeur, RBW = 1 KHz, VBW = 10 Hz, SWT = ‘auto’.\nObserver le signal fréquentiel.\n\n::: {.callout-tip title=“Application” icon=“false”}\nAprès avoir correctement configuré l’analyseur de spectre, déterminer les caractéristiques fréquentielles du signal radar comme :\n\nLa fréquence du signal radar,\nla PRF, en déduire la distance d’ambiguïté,\nla largeur de l’impulsion à partir du spectre,\nla puissance maximale du signal (i.e. la puissance “peak”).\n\nModifier la fréquence du signal radar. Pour cela, modifier la variable f0 du programme TX_impulse_radar.grc. Adapter le paramètre Center frequency de l’analyseur de spectre pour l’adapter à cette fréquence. Observer son influence sur :\n\nLa fréquence du signal radar,\nla PRF,\nla largeur de l’impulsion,\nla puissance maximale du signal.\n\nRevenir à une fréquence de 2.4 GHz (penser à modifier, aussi, la valeur de la fréquence sur l’analyseur de spectre). Modifier la variable tau du programme TX_impulse_radar.grc et observer son influence sur :\n\nla fréquence du signal radar,\nla PRF,\nla largeur de l’impulsion,\nla puissance maximale du signal.\n\nRevenir à une largeur d’impulsion de 10 us, modifier la valeur de la PRF du signal radar (variable PRF du programme TX_impulse_radar.grc). Déterminer les modifications apportées à :\n\nla fréquence du signal radar,\nla PRF,\nla largeur de l’impulsion,\nla puissance maximale du signal.\n\nConclure.\n\n\n\n\n\n\nImportant\n\n\n\nPenser à faire un PRESET avant d’éteindre l’analyseur de spectre",
+    "crumbs": [
+      "Signal \"radar\""
+    ]
+  },
+  {
+    "objectID": "TP_deux_implusions.html",
+    "href": "TP_deux_implusions.html",
+    "title": "Signal “Paire d’impulsions",
+    "section": "",
+    "text": "Impulsion de largeur 50 ns.",
+    "crumbs": [
+      "Signal \"Paire d'impulsions"
+    ]
+  },
+  {
+    "objectID": "TP_deux_implusions.html#impulsion-de-largeur-50-ns.",
+    "href": "TP_deux_implusions.html#impulsion-de-largeur-50-ns.",
+    "title": "Signal “Paire d’impulsions",
+    "section": "",
+    "text": "Préparation\n\n\n\n\n\n\nDonner le spectre d’une impulsion isolée.\nQuel est l’effet d’une périodisation du signal sur le spectre ? Justifier votre réponse.\nDonner le spectre d’un signal impulsionnel de période 1\\(\\mu\\)s.\n\n\n\n\n\nManipulation\n\nVisualiser ce spectre et comparer les relevés en temporel et en fréquentiel.\nObserver et justifier l’effet sur le spectre d’une variation de la largeur de l’impulsion et d’une variation de la période",
+    "crumbs": [
+      "Signal \"Paire d'impulsions"
+    ]
+  },
+  {
+    "objectID": "TP_deux_implusions.html#paire-dimpulsions-proche-dans-le-temps.",
+    "href": "TP_deux_implusions.html#paire-dimpulsions-proche-dans-le-temps.",
+    "title": "Signal “Paire d’impulsions",
+    "section": "Paire d’impulsions proche dans le temps.",
+    "text": "Paire d’impulsions proche dans le temps.\n\n\n\n\n\n\nPréparation\n\n\n\n\n\n\nDéterminer le spectre d’une paire d’impulsions de largeur 50 ns et espacées de 150 ns.\nLes paires d’impulsions sont répétées périodiquement à la période 1\\(\\mu\\)s. Donner le spectre du signal obtenu\n\n\n\n\n\nManipulation\n\nVisualiser ce spectre et comparer les relevés en temporel et en fréquentiel.\n\n\n\n\n\n\n\nImportant\n\n\n\nPenser à faire un PRESET avant d’éteindre l’analyseur de spectre",
+    "crumbs": [
+      "Signal \"Paire d'impulsions"
+    ]
+  },
+  {
+    "objectID": "FAQ.html",
+    "href": "FAQ.html",
+    "title": "FAQ - Synthèse",
+    "section": "",
+    "text": "Q : Quel est l’objectif principal de ce document ?\nR : Ce document est un support de TP (Travaux Pratiques) sur l’analyse spectrale, destiné à enseigner les principes fondamentaux des hyperfréquences et l’utilisation d’un analyseur de spectre. L’objectif est de rendre les participants autonomes dans l’utilisation des instruments RF.\nQ : À qui s’adresse cette formation ?\nR : Cette formation s’adresse principalement aux professionnels non spécialistes des hyperfréquences, ainsi qu’aux étudiants de la Licence Professionnelle Mesures Hyperfréquences et Radiocommunications (LP MHR).\nQ : Quels sont les concepts clés abordés dans ce document ?\nR : Les concepts clés abordés incluent:\n\nBande passante de résolution (RBW) : Influence la résolution et le temps de balayage.\nTemps de balayage (SWT) : Le temps mis pour balayer la gamme de fréquences.\nBande passante vidéo (VBW) : Filtre la sortie du détecteur pour réduire le bruit.\nNiveau de référence (REF LEV) : Le niveau de puissance maximum affiché à l’écran.\nAtténuation RF (RF ATT) : Atténue le signal d’entrée pour éviter la surcharge de l’analyseur.\nSPAN: L’étendue de fréquence visualisée.\nFréquence centrale (Fc): La fréquence autour de laquelle l’analyseur effectue le balayage.\n\nQ : Quels sont les types de signaux étudiés dans ce TP ?\nR : Plusieurs types de signaux sont analysés, notamment :\n\nOnde CW (onde continue) : Pour comprendre la pureté spectrale d’un générateur RF.\nSignal à deux tons : Pour apprendre à paramétrer l’analyseur.\nSignal radar : Pour identifier ses caractéristiques temporelles et fréquentielles.\nDoublet d’impulsions : Pour étudier l’effet de la répétition d’impulsions.\nBande FM : Pour visualiser et mesurer les signaux des stations de radio FM.\n\nQ : Quelles sont les précautions de sécurité à prendre lors de l’utilisation d’un analyseur de spectre ?\nR : Les consignes de sécurité essentielles sont :\n\nNe pas retirer le DC block : Certains analyseurs ne supportent pas de signal continu (DC).\nNe pas dépasser la puissance maximale admissible : Pour éviter d’endommager l’analyseur.\nLire les spécifications : Avant toute utilisation, il est important de consulter les spécifications et consignes de sécurité de l’appareil.\n\nQ : Comment la bande passante de résolution (RBW) influence-t-elle la mesure ?\nR : La RBW a un impact majeur sur la résolution spectrale et le temps de balayage. En diminuant la RBW, on améliore la résolution, mais le temps de balayage augmente. Il faut donc trouver un compromis adapté à la mesure.\nQ : Qu’est-ce que la fonction “Maximum Hold” et quand l’utiliser ?\nR : La fonction “Maximum Hold” est utilisée pour mesurer la réponse fréquentielle d’éléments passifs comme les filtres. Elle enregistre la valeur maximale du signal sur plusieurs balayages pour compenser la non-synchronisation entre le générateur et l’analyseur.\nQ : Comment effectuer une mesure de la pureté spectrale d’un générateur RF ?\nR : Pour évaluer la pureté spectrale, il faut mesurer les harmoniques présentes dans le signal. En ajustant le SPAN et la fréquence centrale, on peut visualiser ces harmoniques et mesurer leur fréquence et leur puissance.\nQ : Qu’est-ce que le plancher de bruit d’un analyseur de spectre ?\nR : Le plancher de bruit représente la puissance minimale mesurable par l’analyseur. En diminuant la RBW, on réduit le plancher de bruit, ce qui permet d’augmenter la sensibilité de la mesure, mais cela augmente le temps de balayage.\nQ : Quels sont les paramètres à ajuster pour une mesure précise d’un signal ?\nR : Les paramètres clés à régler sont:\n\nFréquence centrale (Fc) : Pour centrer le signal à l’écran.\nÉtendue de la fréquence (SPAN) : Pour choisir la largeur de la plage de fréquences à afficher.\nNiveau de référence (REF LEV) : Pour adapter la plage dynamique à la puissance du signal.\nBande passante de résolution (RBW) : Pour la résolution fréquentielle.\nBande passante vidéo (VBW) : Pour le lissage du signal.\nTemps de balayage (SWT) : Ajusté en fonction de la RBW et de la précision souhaitée.",
+    "crumbs": [
+      "FAQ - Synthèse"
+    ]
+  }
+]
