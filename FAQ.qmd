@@ -1,0 +1,66 @@
+# FAQ - Synthèse {.unnumbered}
+
+**Q : Quel est l'objectif principal de ce document ?**
+
+R : Ce document est un support de TP (Travaux Pratiques) sur l'analyse spectrale, destiné à enseigner les principes fondamentaux des hyperfréquences et l'utilisation d'un analyseur de spectre. L'objectif est de rendre les participants autonomes dans l'utilisation des instruments RF.
+
+**Q : À qui s'adresse cette formation ?**
+
+R : Cette formation s'adresse principalement aux professionnels non spécialistes des hyperfréquences, ainsi qu'aux étudiants de la Licence Professionnelle Mesures Hyperfréquences et Radiocommunications (LP MHR).
+
+**Q : Quels sont les concepts clés abordés dans ce document ?**
+
+R : Les concepts clés abordés incluent:
+
+*   **Bande passante de résolution (RBW)** : Influence la résolution et le temps de balayage.
+*   **Temps de balayage (SWT)** : Le temps mis pour balayer la gamme de fréquences.
+*   **Bande passante vidéo (VBW)** : Filtre la sortie du détecteur pour réduire le bruit.
+*   **Niveau de référence (REF LEV)** : Le niveau de puissance maximum affiché à l'écran.
+*   **Atténuation RF (RF ATT)** : Atténue le signal d'entrée pour éviter la surcharge de l'analyseur.
+*   **SPAN**: L'étendue de fréquence visualisée.
+*   **Fréquence centrale (Fc)**: La fréquence autour de laquelle l'analyseur effectue le balayage.
+
+**Q : Quels sont les types de signaux étudiés dans ce TP ?**
+
+R : Plusieurs types de signaux sont analysés, notamment :
+
+*   **Onde CW (onde continue)** : Pour comprendre la pureté spectrale d'un générateur RF.
+*   **Signal à deux tons** : Pour apprendre à paramétrer l'analyseur.
+*   **Signal radar** : Pour identifier ses caractéristiques temporelles et fréquentielles.
+*   **Doublet d'impulsions** : Pour étudier l'effet de la répétition d'impulsions.
+*   **Bande FM** : Pour visualiser et mesurer les signaux des stations de radio FM.
+
+**Q : Quelles sont les précautions de sécurité à prendre lors de l'utilisation d'un analyseur de spectre ?**
+
+R : Les consignes de sécurité essentielles sont :
+
+*   **Ne pas retirer le DC block** : Certains analyseurs ne supportent pas de signal continu (DC).
+*   **Ne pas dépasser la puissance maximale admissible** : Pour éviter d'endommager l'analyseur.
+*   **Lire les spécifications** : Avant toute utilisation, il est important de consulter les spécifications et consignes de sécurité de l'appareil.
+
+**Q : Comment la bande passante de résolution (RBW) influence-t-elle la mesure ?**
+
+R : La RBW a un impact majeur sur la résolution spectrale et le temps de balayage. En diminuant la RBW, on améliore la résolution, mais le temps de balayage augmente. Il faut donc trouver un compromis adapté à la mesure.
+
+**Q : Qu'est-ce que la fonction "Maximum Hold" et quand l'utiliser ?**
+
+R : La fonction "Maximum Hold" est utilisée pour mesurer la réponse fréquentielle d'éléments passifs comme les filtres. Elle enregistre la valeur maximale du signal sur plusieurs balayages pour compenser la non-synchronisation entre le générateur et l'analyseur.
+
+**Q : Comment effectuer une mesure de la pureté spectrale d'un générateur RF ?**
+
+R : Pour évaluer la pureté spectrale, il faut mesurer les harmoniques présentes dans le signal. En ajustant le *SPAN* et la fréquence centrale, on peut visualiser ces harmoniques et mesurer leur fréquence et leur puissance.
+
+**Q : Qu'est-ce que le plancher de bruit d'un analyseur de spectre ?**
+
+R : Le plancher de bruit représente la puissance minimale mesurable par l'analyseur. En diminuant la RBW, on réduit le plancher de bruit, ce qui permet d'augmenter la sensibilité de la mesure, mais cela augmente le temps de balayage.
+
+**Q : Quels sont les paramètres à ajuster pour une mesure précise d'un signal ?**
+
+R : Les paramètres clés à régler sont:
+
+*   **Fréquence centrale (Fc)** : Pour centrer le signal à l'écran.
+*   **Étendue de la fréquence (SPAN)** : Pour choisir la largeur de la plage de fréquences à afficher.
+*   **Niveau de référence (REF LEV)** : Pour adapter la plage dynamique à la puissance du signal.
+*   **Bande passante de résolution (RBW)** : Pour la résolution fréquentielle.
+*    **Bande passante vidéo (VBW)** : Pour le lissage du signal.
+*   **Temps de balayage (SWT)** : Ajusté en fonction de la RBW et de la précision souhaitée.

@@ -1,0 +1,103 @@
+# Signal "radar" {.unnumbered}
+
+:::{.callout-note title="Objectifs" icon="false" collapse="true"}
+
+* Caractériser un signal radar : 
+    * sous sa forme temporelle,
+    * sous sa forme fréquentielle.
+* Identifier les relations entre les domaines temporel et fréquentiel.
+
+:::
+
+## Présentation de l'activité
+
+Dans ce TP, nous allons chercher à caractériser l'impulsion radar avec un analyseur de spectre. Le montage proposé est présenté sur la @fig-montage.
+
+![Mesure proposée avec l'analyseur de spectre](figures/montage.png){#fig-montage}
+
+### Caractéristiques temporelles
+
+La @fig-puissance présente les caractéristiques temporelles "puissance" de l'impulsion.
+
+![Caractéristiques temporelles (fig. extraite de [Keysight](https://www.keysight.com/us/en/assets/6123-1550/lessons/0040RadarBasicsforElectronicWarfareSystems004RadarMeasurements.mp4?courseId=40&nextLessonNumber=5))](figures/puissance.png){#fig-puissance}
+
+Le calcul de la puissance de l'impulsion se déduit de la puissance moyenne (voir @fig-expuissance)
+
+![Exemple numérique - la puissance moyenne est mesurée avec une sonde (fig. extraite de [Keysight](https://www.keysight.com/us/en/assets/6123-1550/lessons/0040RadarBasicsforElectronicWarfareSystems004RadarMeasurements.mp4?courseId=40&nextLessonNumber=5))](figures/puissance_example.png){#fig-expuissance}
+
+### Caractéristiques fréquentielles
+
+La @fig-frequence présente l'aspect fréquentiel de l'impulsion radar ainsi que les relations entre le domaine temps et fréquence.
+
+![Caractéristiques fréquentielles (fig. extraite de [Keysight](https://www.keysight.com/us/en/assets/6123-1538/lessons/0040RadarBasicsforElectronicWarfareSystems001RadarBasics.mp4?courseId=40&nextLessonNumber=2))](figures/frequence.png){#fig-frequence}
+
+## Démarche expérimentale
+
+Le montage proposé pour réaliser cette activité est celui de la @fig-montage.
+
+### Aspect temporel
+
+1. Faire un `Preset` sur l'analyseur de spectre.
+2. Régler l'analyseur de spectre avec la configuration suivante (center frequency = 2400MHz, Span = 0 Hz, Ref.lev. = 10 dBm, RBW = 10 MHz, VBW = 10MHz, SWT = 100 us ).
+3. Connecter la carte pluto à l'analyseur de spectre.
+4. Activer le programme GnuRadio companion `TX_impulse_radar.grc`.
+5. Adapter le `Ref. lev.` de l'analyseur de spectre.
+
+::: {.callout-tip title="Application" icon="false"}
+
+Après avoir correctement configuré l'analyseur de spectre, déterminer les caractéristiques temporelles du signal radar :
+
+* Largeur d'impulsion, en déduire la résolution distance.
+* PRI, en déduire la PRF et l'ambiguïté distance.
+* La puissance "de l'impulsion", en déduire la puissance moyenne.
+
+Est-il possible de visualiser cette impulsion avec un oscilloscope ?
+
+Modifier dans le programme GnuRadio companion `TX_impulse_radar.grc`, la variable `tau` qui correspond à la largeur d'impulsion, que peut-on dire de la résolution distance, de l'ambiguïté distance et de la puissance moyenne.
+
+:::
+
+### Aspect fréquentiel
+
+1. Régler la largeur d'impulsion à 10 us.
+2. Modifier les réglages de l'analyseur de spectre ainsi : center frequency = 2400MHz, Span = 1 MHz, Ref.lev. = conserver la valeur, RBW = 1 KHz, VBW = 10 Hz, SWT = 'auto'.
+4. Observer le signal fréquentiel.
+
+::: {.callout-tip title="Application" icon="false"}
+
+Après avoir correctement configuré l'analyseur de spectre, déterminer les caractéristiques fréquentielles du signal radar comme :
+
+* La fréquence du signal radar,
+* la PRF, en déduire la distance d'ambiguïté,
+* la largeur de l'impulsion à partir du spectre,
+* la puissance maximale du signal (i.e. la puissance "peak").
+
+Modifier la fréquence du signal radar. Pour cela, modifier la variable `f0` du programme `TX_impulse_radar.grc`. Adapter le paramètre `Center frequency` de l'analyseur de spectre pour l'adapter à cette fréquence. Observer son influence sur :
+
+* La fréquence du signal radar,
+* la PRF, 
+* la largeur de l'impulsion,
+* la puissance maximale du signal.
+
+Revenir à une fréquence de 2.4 GHz (penser à modifier, aussi, la valeur de la fréquence sur l'analyseur de spectre). Modifier la variable `tau` du programme `TX_impulse_radar.grc` et observer son influence sur :
+
+* la fréquence du signal radar,
+* la PRF, 
+* la largeur de l'impulsion,
+* la puissance maximale du signal.
+
+Revenir à une largeur d'impulsion de 10 us, modifier la valeur de la PRF du signal radar (variable `PRF` du programme `TX_impulse_radar.grc`). Déterminer les modifications apportées à :
+
+* la fréquence du signal radar,
+* la PRF, 
+* la largeur de l'impulsion,
+* la puissance maximale du signal.
+
+Conclure.
+
+
+:::{.callout-important}
+
+**Penser à faire un PRESET avant d'éteindre l'analyseur de spectre**
+
+:::

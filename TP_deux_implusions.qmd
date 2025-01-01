@@ -1,0 +1,65 @@
+# Signal "Paire d'impulsions {.unnumbered}
+
+:::{.callout-note title="Objectifs" icon="false" collapse="true"}
+
+Le but du TP est de visualiser les spectres des différents signaux décrits ci-dessous.  
+
+Pour chaque étude vous visualiserez simultanément le signal temporel sur l’oscilloscope et son spectre en amplitude sur l’analyseur de spectre. Des curseurs et des marqueurs vous permettront de comparer les mesures faites dans chaque domaine.
+
+
+Les prédéterminations des spectres seront faites par la méthode indirecte que vous connaissez:
+
+*Le signal temporel est décomposé en produit ou en produit de convolution de signaux élémentaires (dont le spectre est connu)*
+
+*Le passage dans le domaine fréquentiel se fait en sachant qu’un produit (produit de convolution) dans le domaine temporel devient un produit de convolution (produit) dans le domaine fréquentiel*
+
+:::
+
+:::{.callout-caution title="Consignes de SÉCURITÉ concernant l'utilisation de l'analyseur de spectre" icon="true" collapse="false" }
+
+1. Certains analyseurs de spectre ne supportent pas un signal continu (DC) sur l'entrée RF : NE PAS RETIRER LE DC BLOCK SUR L'ENTRÉE RF de l'analyseur de spectre.
+2. NE JAMAIS DÉPASSER LA PUISSANCE MAXIMALE ADMISSIBLE SUR L'ENTRÉE RF de l'analyseur de spectre.
+3. Une bonne habitude est de lire les spécifications et les consignes de sécurité avant d'utiliser un appareil de mesure RF !
+
+:::
+
+**Matériels**
+
+* Générateur d'impulsion.
+* Oscilloscop.
+* Analyseur de spectre.
+* Adaptateurs N-sma, BNC-sma.
+* Cordons SMA.
+
+## Impulsion de largeur 50 ns.
+
+:::{.callout-note title="Préparation" icon="false" collapse="false"}
+    
+* Donner le spectre d'une impulsion isolée.
+* Quel est l’effet d’une périodisation du signal sur le spectre ? Justifier votre réponse.
+* Donner le spectre d’un signal impulsionnel de période 1$\mu$s.
+:::
+
+### Manipulation
+
+1. Visualiser ce spectre et comparer les relevés en temporel et en fréquentiel.
+2. Observer et justifier l’effet sur le spectre d’une variation de la largeur de l’impulsion et d’une variation de la période
+
+## Paire d’impulsions proche dans le temps.
+
+:::{.callout-note title="Préparation" icon="false" collapse="false"}
+
+* Déterminer le spectre d’une paire d’impulsions de largeur 50 ns et espacées de 150 ns.
+* Les paires d'impulsions sont répétées périodiquement à la période 1$\mu$s. Donner le spectre du signal obtenu
+
+:::
+
+### Manipulation
+
+1. Visualiser ce spectre et comparer les relevés en temporel et en fréquentiel.
+
+:::{.callout-important}
+
+**Penser à faire un PRESET avant d'éteindre l'analyseur de spectre**
+
+:::

@@ -1,0 +1,30 @@
+# Bases des hyperfréquences : de la théorie à la pratique {.unnumbered}
+
+
+Ce cours de cinq jours permet aux professionnels non spécialistes de comprendre les principes fondamentaux des hyperfréquences. Toutes les explications reposent sur des descriptions physiques simples, sans mathématiques complexes. Cette formation vise à rendre les participants autonomes dans l’utilisation des instruments RF et à leur fournir des bases en hyperfréquences.
+
+Ce document repose en partie sur des formations organisées à l'IUT de Ville-d'Avray pour la Licence Professionnelle Mesures Hyperfréquences et Radiocommunications ([LP MHR](https://cva-geii.parisnanterre.fr/formations/licence-professionnelle-mhr){target="_blank"}), et au Centre de Formation de la Défense. 
+
+**Mots-clés**
+
+* analyse spectrale, analyseur de spectre, signal CW, deux tons, impulsion radar, doublet d'impulsions.
+
+**Résumé** : Ce document est un guide de travaux pratiques (TP) sur l'analyse spectrale, utilisant un analyseur de spectre et un générateur RF. Il détaille la mesure de différents signaux : ondes continues, signaux à deux tons, signaux radar, et paires d’impulsions. L'objectif est d'apprendre à utiliser l'analyseur de spectre, comprendre ses paramètres (RBW, VBW, SWT, etc.), et analyser les relations entre les domaines temporel et fréquentiel. Des mesures de pureté spectrale et d'analyse de signaux composites sont également incluses.
+
+:::{.callout-note title="Objectifs du TP" icon="false" collapse="false"}
+
+* Utilisation d’un analyseur de spectre et d'un générateur RF
+
+    * Analyse spectrale d’une onde CW et pureté spectrale d’un générateur RF.
+    * Spectre d’un signal à deux tons : paramétrage de l’analyseur.
+    * Spectre d’un signal radar.
+    * Analyse d’un doublet d’impulsions.
+:::
+
+## Auteur
+
+[Franck Daout](mailto:fdaout@parisnanterre.fr) est enseignant-chercheur à l'Université Paris 10 Nanterre, à l'IUT de Ville-d'Avray. Il est responsable de la Licence Professionnelle Mesures Hyperfréquences et Radiocommunications. 
+
+## Conditions d'utilisation
+
+![](https://i.creativecommons.org/l/by/4.0/88x31.png) Ce travail est soumis à la licence [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).

@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.552">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>TP Analyse spectrale - Signal “composite”</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./TP_radar.html" rel="next">
+<link href="./TP_base_AS.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./TP_resolution_AS.html">Signal “composite”</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">TP Analyse spectrale</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Recherche"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bases des hyperfréquences : de la théorie à la pratique</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./TP_base_AS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prise en main de l’analyseur de spectre</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./TP_resolution_AS.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Signal “composite”</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./TP_radar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Signal “radar”</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./TP_deux_implusions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Signal “Paire d’impulsions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./FAQ.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FAQ - Synthèse</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table des matières</h2>
+   
+  <ul>
+  <li><a href="#analyse-dun-spectre" id="toc-analyse-dun-spectre" class="nav-link active" data-scroll-target="#analyse-dun-spectre">Analyse d’un spectre</a>
+  <ul class="collapse">
+  <li><a href="#analyse-théorique" id="toc-analyse-théorique" class="nav-link" data-scroll-target="#analyse-théorique">Analyse théorique</a></li>
+  <li><a href="#expérimentation" id="toc-expérimentation" class="nav-link" data-scroll-target="#expérimentation">Expérimentation</a></li>
+  </ul></li>
+  <li><a href="#résolution-spectrale-dun-analyseur-de-spectre" id="toc-résolution-spectrale-dun-analyseur-de-spectre" class="nav-link" data-scroll-target="#résolution-spectrale-dun-analyseur-de-spectre">Résolution spectrale d’un analyseur de spectre</a>
+  <ul class="collapse">
+  <li><a href="#influence-du-rbw" id="toc-influence-du-rbw" class="nav-link" data-scroll-target="#influence-du-rbw">Influence du RBW</a></li>
+  </ul></li>
+  <li><a href="#dynamique-dun-analyseur-de-spectre" id="toc-dynamique-dun-analyseur-de-spectre" class="nav-link" data-scroll-target="#dynamique-dun-analyseur-de-spectre">Dynamique d’un analyseur de spectre</a></li>
+  <li><a href="#application-mesure-du-gabarit-dun-filtre-passe-bande-avec-la-fonction-maximum-hold" id="toc-application-mesure-du-gabarit-dun-filtre-passe-bande-avec-la-fonction-maximum-hold" class="nav-link" data-scroll-target="#application-mesure-du-gabarit-dun-filtre-passe-bande-avec-la-fonction-maximum-hold">Application : Mesure du gabarit d’un filtre passe-bande avec la fonction Maximum Hold</a>
+  <ul class="collapse">
+  <li><a href="#expérimentation-1" id="toc-expérimentation-1" class="nav-link" data-scroll-target="#expérimentation-1">Expérimentation</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Signal “composite”</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Objectifs">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Objectifs
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>À la fin de ce TP, vous serez capable de régler correctement :</p>
+<ul>
+<li>le niveau de référence (Ref. Lev.)</li>
+<li>le filtre de résolution (RBW)</li>
+<li>le temps de balayage (SWT)</li>
+</ul>
+<p>L’objectif est d’identifier l’influence de ces paramètres et de s’assurer que leur réglage est correctement choisi afin d’éviter de faire une mauvaise mesure.</p>
+<p>Dans tout ce TP, le filtre vidéo VBW est choisi en fonction du filtre de résolution (VBW = RBW/100).</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled" title="Consignes de SÉCURITÉ concernant l'utilisation de l'analyseur de spectre">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Consignes de SÉCURITÉ concernant l’utilisation de l’analyseur de spectre
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Certains analyseurs de spectre ne supportent pas un signal continu (DC) sur l’entrée RF : NE PAS RETIRER LE DC BLOCK SUR L’ENTRÉE RF de l’analyseur de spectre.</li>
+<li>NE JAMAIS DÉPASSER LA PUISSANCE MAXIMALE ADMISSIBLE SUR L’ENTRÉE RF de l’analyseur de spectre.</li>
+<li>Une bonne habitude est de lire les spécifications et les consignes de sécurité avant d’utiliser un appareil de mesure RF !</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>Matériel</strong></p>
+<ul>
+<li>Synthétiseur R&amp;S SMB100A</li>
+<li>Synthétiseur HP 8648A ou HP 8656B</li>
+<li>Combinateur</li>
+<li>Analyseur de spectre R&amp;S FSP</li>
+<li>Adaptateurs N-SMA</li>
+<li>Cordons SMA</li>
+</ul>
+<p>Une carte ADALM PLUTO permet de remplacer les deux synthétiseurs et le combinateur.</p>
+<section id="analyse-dun-spectre" class="level2">
+<h2 class="anchored" data-anchor-id="analyse-dun-spectre">Analyse d’un spectre</h2>
+<div id="fig-resol_1" class="lightbox quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-resol_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/Resolution_1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="figures/Resolution_1.png" class="img-fluid figure-img" style="width:70.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-resol_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Spectre d’un signal composite
+</figcaption>
+</figure>
+</div>
+<p>Il s’agit, dans cette partie, de créer un signal composite dont le spectre d’amplitude est représenté sur la <a href="#fig-resol_1" class="quarto-xref">Figure&nbsp;<span>1</span></a></p>
+<section id="analyse-théorique" class="level3">
+<h3 class="anchored" data-anchor-id="analyse-théorique">Analyse théorique</h3>
+<p>À partir de la <a href="#fig-resol_1" class="quarto-xref">Figure&nbsp;<span>1</span></a> :</p>
+<ol type="1">
+<li><p>Déterminer la nature du spectre (bilatéral, unilatéral, d’amplitude, de phase ?).</p></li>
+<li><p>Déterminer les réglages de l’analyseur de spectre (atténuateur, niveau de référence, span, RBW, VBW, fréquence centrale, type de l’appareil de mesure). Il s’agit de la configuration de l’appareil (Spectrum Analyzer Setup).</p></li>
+<li><p>Rechercher dans la documentation les caractéristiques de l’analyseur de spectre utilisé (FSP3) :</p></li>
+</ol>
+<div id="tbl-setup1" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-setup1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Caractéristiques de l’analyseur de spectre
+</figcaption>
+<div aria-describedby="tbl-setup1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<thead>
+<tr class="header">
+<th>Paramètre</th>
+<th>Valeur</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Plage de fréquence</td>
+<td>9 kHz à 3 GHz</td>
+</tr>
+<tr class="even">
+<td>Bandes passantes de résolution</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Bandes passantes vidéo</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Niveau de référence (dBm)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<ol start="4" type="1">
+<li><p>Déterminer le nombre de raies et leurs caractéristiques (fréquence, puissance)</p></li>
+<li><p>Exprimer le signal sous forme d’une série de cosinus telle que :</p>
+<p><span id="eq-resol1"><span class="math display">\[
+u(t) = A_1 \cos(2\pi f_1t) + ... + A_n \cos(2\pi f_nt)
+\tag{1}\]</span></span></p></li>
+</ol>
+</section>
+<section id="expérimentation" class="level3">
+<h3 class="anchored" data-anchor-id="expérimentation">Expérimentation</h3>
+<ol type="1">
+<li><p>Proposer un montage qui permet d’obtenir ce signal. Pour cela, on utilisera un combinateur (additionneur).</p></li>
+<li><p>Indiquer les réglages des différents appareils de mesure.</p></li>
+<li><p>Réaliser le montage et vérifier vos réglages.</p></li>
+<li><p>Réaliser une fiche de mesure qui permet de synthétiser votre mesure. Cette fiche doit permettre à n’importe qui de refaire votre mesure afin de retrouver vos résultats. Il convient donc d’indiquer :</p>
+<ol type="1">
+<li>un schéma du montage (photographie),</li>
+<li>les références des appareils de mesures (y compris la référence IUT),</li>
+<li>tous les réglages des appareils de mesure,</li>
+<li>vos résultats,</li>
+<li>vos commentaires sur la mesure.</li>
+</ol></li>
+</ol>
+</section>
+</section>
+<section id="résolution-spectrale-dun-analyseur-de-spectre" class="level2">
+<h2 class="anchored" data-anchor-id="résolution-spectrale-dun-analyseur-de-spectre">Résolution spectrale d’un analyseur de spectre</h2>
+<p>Dans cette partie, nous allons observer l’effet du filtre de résolution (RBW) lorsque l’on mesure deux signaux de fréquences différentes mais d’amplitudes identiques. La <a href="#fig-resol_2" class="quarto-xref">Figure&nbsp;<span>2</span></a> permet de réaliser cette étude.</p>
+<div id="fig-resol_2" class="lightbox quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-resol_2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/Resolution_2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="figures/Resolution_2.png" class="img-fluid figure-img" style="width:70.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-resol_2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Effet du RBW
+</figcaption>
+</figure>
+</div>
+<section id="influence-du-rbw" class="level3">
+<h3 class="anchored" data-anchor-id="influence-du-rbw">Influence du RBW</h3>
+<ol type="1">
+<li><p>Réaliser le montage de la <a href="#fig-resol_2" class="quarto-xref">Figure&nbsp;<span>2</span></a>. Régler le premier générateur pour voir une fréquence de 800 MHz avec une amplitude de -20 dBm. Le second générateur est réglé pour un signal à une fréquence de 801 MHz avec une amplitude de -20 dBm.</p></li>
+<li><p>Après avoir fait un “preset” sur l’analyseur de spectre, régler uniquement la fréquence centrale, le span ainsi que le niveau de référence pour pouvoir visualiser le signal. Régler le rapport RBW/VBW : pour cela, appuyer sur le bouton BW, puis aller dans le menu COUPLING RATIO, choisir le menu RBW/VBW MANUAL. Choisir la valeur 100.</p>
+<ol type="1">
+<li>Indiquez la configuration de l’analyseur de spectre.</li>
+<li>Commentez vos observations.</li>
+</ol></li>
+<li><p>En faisant varier le RBW (bouton BW) sans modifier les autres réglages, compléter le <a href="#tbl-rbw_2" class="quarto-xref">Table&nbsp;<span>2</span></a>, Que faut-il en conclure ?</p></li>
+</ol>
+<div id="tbl-rbw_2" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-rbw_2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Influence du RBW
+</figcaption>
+<div aria-describedby="tbl-rbw_2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<colgroup>
+<col style="width: 34%">
+<col style="width: 9%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 9%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>RBW</th>
+<th>10 MHz</th>
+<th>3 MHz</th>
+<th>1 MHz</th>
+<th>300 kHz</th>
+<th>100 kHz</th>
+<th>30 kHz</th>
+<th>10 kHz</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Fréquence f1 (MHz)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Puissance P1 (dBm)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Fréquence f2 (MHz)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Puissance P2 (dBm)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Creux (dBm)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Temps de balayage (ms)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<ol start="4" type="1">
+<li>Relation entre le temps de balayage, le RBW et le SPAN : il y a un compromis à faire entre le RBW et le temps de balayage. Si on réduit le RBW, le temps de balayage augmente. Cela est dû au temps nécessaire pour que le signal s’établisse dans le filtre. Généralement, on admet :</li>
+</ol>
+<p><span id="eq-resol2"><span class="math display">\[
+\text{Temps de balayage} = k \times \frac{\text{SPAN}}{\text{RBW} \times \text{VBW}}
+\tag{2}\]</span></span></p>
+<p>avec k variant en fonction du type de filtre.</p>
+<p>Déterminer la valeur de k pour les différentes valeurs de RBW &lt; 1MHz.</p>
+<p>Généralement, les analyseurs de spectre calculent automatiquement le temps de balayage en fonction du RBW, mais ils autorisent de choisir indépendamment le temps de balayage et le RBW. Dans ce cas, la réponse de l’analyseur peut être non calibrée et il peut y avoir des erreurs sur la fréquence et sur l’amplitude. Pour observer ce phénomène, mettre le générateur 2 sur OFF et choisir une configuration avec un temps de balayage trop rapide ;</p>
+<ul>
+<li>Que se passe-t-il pour les valeurs de la puissance et de la fréquence ? Après avoir fait cette manipulation, penser à remettre le temps de balayage en mode automatique.</li>
+</ul>
+</section>
+</section>
+<section id="dynamique-dun-analyseur-de-spectre" class="level2">
+<h2 class="anchored" data-anchor-id="dynamique-dun-analyseur-de-spectre">Dynamique d’un analyseur de spectre</h2>
+<p>Le premier élément important d’un analyseur de spectre est l’atténuateur interne. Son rôle est de s’assurer que le signal qui entre dans le mélangeur possède le niveau optimal pour éviter une surcharge, une compression et une distorsion. Comme l’atténuateur est un circuit de protection de l’analyseur de spectre, il est généralement réglé automatiquement en fonction du niveau de référence. Toutefois, une sélection manuelle est aussi possible par paliers. Le palier dépend du type d’analyseur de spectre.</p>
+<p>Le niveau de référence est le niveau maximum de puissance (ou de tension) que l’on cherche à visualiser. Il correspond à la ligne horizontale supérieure de l’écran. Il est possible de choisir l’unité affichée (dBm, dBV, W, ou V).</p>
+<p>En utilisant le montage de la <a href="#fig-resol_2" class="quarto-xref">Figure&nbsp;<span>2</span></a>, régler le synthétiseur SMB100A sur -20 dBm avec une fréquence de 800 MHz et le synthétiseur HP8648A sur -70 dBm pour une fréquence de 800,075 MHz.</p>
+<ol type="1">
+<li><p>Quels sont les réglages qui permettent d’observer correctement ce signal ? Indiquer la configuration de l’analyseur de spectre (niveau de référence, atténuateur, span, fréquence centrale, RBW, VBW)</p></li>
+<li><p>Le RBW est maintenant réglé à 30 kHz. Le synthétiseur HP8648A est réglé à -20 dBm.</p>
+<ol type="1">
+<li>Est-il possible de distinguer les deux raies ? (un critère consiste à mesurer l’amplitude du creux. Il doit être inférieure de 3dB au pic le plus faible pour pouvoir distinguer les deux signaux).</li>
+<li>Diminuer la puissance sur le générateur HP8648A, jusqu’à ce qu’on ne puisse plus distinguer les deux raies. Quelle est cette valeur ?</li>
+<li>Qu’observe-t-on pour une puissance de -70 dBm ?</li>
+<li>Que faut-il faire pour observer les deux signaux ?</li>
+<li>Refaire la même étude pour un RBW réglé à 10 kHz.</li>
+</ol></li>
+<li><p>Le RBW est maintenant réglé à 10 kHz. Nous allons chercher à déterminer la puissance minimum que notre analyseur de spectre peut mesurer (le plancher de bruit).</p>
+<ol type="1">
+<li>Quelle est la puissance minimale que l’on peut mesurer (le plancher de bruit) ?</li>
+<li>Que devient cette puissance si on diminue le RBW d’un facteur 10 (1 kHz) ?</li>
+<li>Comparer cette valeur à la valeur précédente. Que peut-on dire du plancher de bruit ? Que peut-on dire du temps de balayage ?</li>
+</ol></li>
+<li><p>Sur quel(s) paramètre(s) peut-on agir pour augmenter la sensibilité ?</p></li>
+</ol>
+</section>
+<section id="application-mesure-du-gabarit-dun-filtre-passe-bande-avec-la-fonction-maximum-hold" class="level2">
+<h2 class="anchored" data-anchor-id="application-mesure-du-gabarit-dun-filtre-passe-bande-avec-la-fonction-maximum-hold">Application : Mesure du gabarit d’un filtre passe-bande avec la fonction Maximum Hold</h2>
+<p>La fonction Maximum Hold peut être d’une utilité importante lorsque vous mesurez la réponse fréquentielle d’éléments passifs tels qu’un filtre. Pour cela, il est nécessaire de générer un signal avec un générateur RF (<a href="#fig-resol_3" class="quarto-xref">Figure&nbsp;<span>3</span></a>) et d’enregistrer la réponse du DUT (Device Under Test : le filtre ici) avec votre analyseur de spectre. Comme la vitesse de balayage du générateur et celle de l’analyseur ne sont pas synchrones, la fonction Maximum Hold permet de tracer la réponse du DUT (généralement après deux à trois balayages).</p>
+<div id="fig-resol_3" class="lightbox quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-resol_3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/Resolution_3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="figures/Resolution_3.png" class="img-fluid figure-img" style="width:70.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-resol_3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Mesure du gabarit d’un filtre
+</figcaption>
+</figure>
+</div>
+<section id="expérimentation-1" class="level3">
+<h3 class="anchored" data-anchor-id="expérimentation-1">Expérimentation</h3>
+<ol type="1">
+<li>Connecter à l’entrée de l’analyseur de spectre un filtre SHP-700+</li>
+<li>Régler le SMB100A pour qu’il réalise un balayage de 100 MHz à 3 GHz</li>
+<li>Analyser le résultat</li>
+</ol>
+
+
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">Figure&nbsp;1: Spectre d’un signal composite</span>
+<span class="glightbox-desc lightbox-desc-2">Figure&nbsp;2: Effet du RBW</span>
+<span class="glightbox-desc lightbox-desc-3">Figure&nbsp;3: Mesure du gabarit d’un filtre</span>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copié");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copié");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./TP_base_AS.html" class="pagination-link" aria-label="Prise en main de l'analyseur de spectre">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Prise en main de l’analyseur de spectre</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./TP_radar.html" class="pagination-link" aria-label="Signal &quot;radar&quot;">
+        <span class="nav-page-text">Signal “radar”</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom"});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
+
+
+
+
+</body></html>

@@ -1,0 +1,178 @@
+# Prise en main de l'analyseur de spectre {.unnumbered}
+
+:::{.callout-note title="Objectifs" icon="false" collapse="true"}
+
+* Se familiariser avec les possibilités et les limitations d'un analyseur de spectre.
+* Comprendre les concepts :
+    * Bande passante de résolution (RBW)
+    * Temps de balayage (SWT)
+    * Bande passante vidéo (VBW)
+    * Niveau de référence (REF LEV)
+    * Atténuation RF (RF ATT)
+* Comprendre comment ces réglages influencent le résultat de la mesure.
+* Mesurer la pureté d'un synthétiseur RF.
+* Déterminer le spectre de la bande radio FM.
+
+:::
+
+:::{.callout-caution title="Consignes de SÉCURITÉ concernant l'utilisation de l'analyseur de spectre" icon="true" collapse="false" }
+
+1. Certains analyseurs de spectre ne supportent pas un signal continu (DC) sur l'entrée RF : NE PAS RETIRER LE DC BLOCK SUR L'ENTRÉE RF de l'analyseur de spectre.
+2. NE JAMAIS DÉPASSER LA PUISSANCE MAXIMALE ADMISSIBLE SUR L'ENTRÉE RF de l'analyseur de spectre.
+3. Une bonne habitude est de lire les spécifications et les consignes de sécurité avant d'utiliser un appareil de mesure RF !
+
+:::
+
+## Mesure du spectre d'une onde CW
+
+La @fig-AS1 présente le montage proposé. Le générateur peut être remplacé par une carte SDR ADALM PLUTO.
+
+![Mesure du spectre d'une onde CW](figures/AS1.png){#fig-AS1 width=70% .lightbox}
+
+**Matériel**  
+
+* [Synthétiseur R&S SMB100A](https://scdn.rohde-schwarz.com/ur/pws/dl_downloads/pdm/cl_brochures_and_datasheets/specifications/3609_4761_22/SMB100A_specs_en_3609-4761-22_v0300.pdf).
+* [Analyseur de spectre R&S FSP](https://scdn.rohde-schwarz.com/ur/pws/dl_downloads/dl_common_library/dl_brochures_and_datasheets/pdf_1/FSP_specs_en.pdf) (avec atténuateur 10dB + DC block).
+* Adaptateurs N-SMA.
+* 1 cordon SMA.
+
+
+:::{.callout-note title="Préparation" icon="false" collapse="false" }
+
+Soit le signal CW suivant :
+
+$$
+u(t) = 0,447 \cos(1,6 \times 10^9\pi t)
+$${#eq-prepa1}
+
+Déterminer :
+
+1. La fréquence, la période et la valeur efficace.
+2. En supposant une impédance de 50 Ω, déterminer la puissance en dBm.
+3. La fréquence et la puissance de ce signal sont-elles dans le domaine d'utilisation de l'analyseur de spectre (indiquer les valeurs limites) ?
+4. Représenter $u(t)$ ainsi que le spectre unilatéral en amplitude.
+5. Indiquer les réglages a priori à effectuer sur l'analyseur pour afficher correctement le spectre.
+
+:::
+
+### Mise en œuvre de la mesure
+
+La mise en œuvre de la mesure est réalisée en respectant les trois étapes suivantes :
+
+1. Réglage du générateur.
+2. Réglage de l'analyseur de spectre.
+3. Mesure et analyse des résultats.
+
+La @fig-gen_as présente les appareils utilisés pour réaliser la mesure de l'onde CW.
+
+:::{#fig-gen_as layout-ncol=2}
+
+![Générateur RF SMB100A](figures/smb100A.png){#fig-gen .lightbox}
+
+![Analyseur de spectre FSP](figures/ASFSP.png){#fig-FSP .lightbox}
+
+Appareils Utilisés
+
+:::
+
+#### Réglages du générateur 
+
+1. Faire un "preset" sur le générateur.
+2. Régler la fréquence.
+3. Régler la puissance.
+4. Mettre le générateur sur RF OFF (si ce n'est pas déjà le cas).
+
+#### Réglage de l'analyseur de spectre : 
+
+1. Faire un "preset" sur l'appareil.
+2. Relever les valeurs de : REF LEV, RF ATT, RBW, VBW, SWT, SPAN et de la fréquence centrale Fc.
+3. Faire les réglages suivants :
+
+| Paramètre | Valeur  |
+| --------- | ------- |
+| Fc        | 800 MHz |
+| SPAN      | 100 MHz |
+| REF LEV   | 0 dBm   |
+| RF ATT    | 10 dB   |
+| RBW       | 1MHz    |
+| VBW       | 100 kHz |
+: setup de l'analyseur de spectre {#tbl-setup1}
+
+4. Relever la valeur de SWT et calculer la quantité $\frac{SPAN}{RBW \times VBW}$ et comparer à SWT.
+
+#### Réaliser la mesure du signal :
+
+1. Vérifier que le DC block et l'atténuateur sont bien connectés.
+2. Relier le générateur à l'analyseur de spectre avec un cordon SMA.
+3. Réaliser un schéma de mesure en précisant la référence de chaque appareil et leurs réglages.
+4. Mettre le générateur  RF ON.
+5. Réaliser la mesure :
+   1. Régler l'échelle log pour avoir 10 dB par division.
+   2. Utiliser le menu marker pour relever la fréquence et la puissance du signal affiché sur l'analyseur de spectre.
+   3. Expliquer la différence entre la valeur attendue et la valeur observée. Ne pas oublier de prendre en compte la valeur de l'atténuateur extérieur associé au DC Block.
+6. Mesure précise de la fréquence. Un analyseur de spectre n'est pas un fréquencemètre. Cependant certains appareils possèdent cette fonction (Freq Count) : elle est obtenue avec le menu marker.
+   1. Afficher le marker 1.
+   2. Dans le menu marker, choisir le menu SIGNAL COUNT.
+   3. Dans la suite du menu marker (bouton next), choisir une résolution du compteur de 1Hz (CNT Resol 1 Hz).
+   4. Relever la fréquence et la puissance du signal. Comparer aux valeurs précédentes et commenter.
+
+#### Analyse : Pertes d'insertion
+
+À partir de la mesure précédente, déterminer les pertes par rapport à la valeur théorique, conclure quant à la validité de la mesure.
+
+## Spectre du signal généré par le SMB100
+
+Vous allez observer une imperfection du synthétiseur SMB100A : sa pureté spectrale. Vous allez notamment mesurer les harmoniques présentes dans le signal. Les spécifications du générateur sont disponibles via ce [lien](https://scdn.rohde-schwarz.com/ur/pws/dl_downloads/pdm/cl_brochures_and_datasheets/specifications/3609_4761_22/SMB100A_specs_en_3609-4761-22_v0300.pdf)
+
+1. Déterminer les fréquences des harmoniques que l'on peut visualiser avec votre analyseur de spectre en plus de la fréquence fondamentale.
+
+2. Régler les valeurs du SPAN à 3 GHz et de la fréquence centrale à 1,5 GHz, sans changer les autres réglages de l'analyseur et du générateur afin d'observer un maximum d'harmoniques.
+   1. Pourquoi la raie à f = 0 Hz ne fait pas partie du spectre du signal issu du générateur ? En fait cette raie apparaît sur certains analyseurs en fonction de la technologie.
+   2. Visualise-t-on toutes les raies attendues ?
+   3. Pour chaque harmonique n > 1 :
+      * Effectuer les réglages pour n'observer qu'une seule raie sur l'écran ;
+      * Mesurer la fréquence et la puissance de la raie en dBc, en indiquant les réglages de l'Analyseur de spectre.
+   4. Ces résultats sont-ils cohérents avec la documentation constructeur du SMB100 ?
+   5. Pour n=3 faire les réglages de la @tbl-setup2.
+      * Mesurer le niveau de la raie ;
+      * Calculer la quantité $\frac{SPAN}{RBW \times VBW}$ et comparer à SWT ; conclusion ?
+
+| Paramètre | Valeur  |
+| --------- | ------- |
+| Fc        | 2,4 GHz |
+| SPAN      | 50 MHz  |
+| REF LEV   | 0 dBm   |
+| RF ATT    | 10 dB   |
+| RBW       | 1MHz    |
+| VBW       | 1 kHz   |
+| SWP       | 5 ms    |
+| Range Log | 40 dB   |
+: Setup de l'analyseur de spectre. {#tbl-setup2}
+   
+
+## Spectre de la bande FM
+
+La bande FM occupe un spectre compris entre 87,8 MHz et 107,5 MHz. L'objectif ici est de visualiser et mesurer quelques raies associées à certaines radios. Sur ce [site](https://www.csa.fr/maradiofm/formulaire) sont indiquées les fréquences ainsi que les puissances émises par les radios FM de votre ville.
+
+### Mise en œuvre de la mesure
+
+![Spectre de la bande FM](figures/AS_FM.png){#fig-AS_FM width=70% .lightbox}
+
+L'antenne sera un simple cordon électrique (fiches bananes) que l'on relie à l'entrée de l'analyseur via des adaptateurs adéquats (@fig-AS_FM).
+
+:::{.callout-note title="Préparation" icon="false" collapse="false" }
+
+À partir du tableau des fréquences du [site](https://www.csa.fr/maradiofm/formulaire) déterminer :
+
+* la fréquence centrale du spectre,
+* l'étendue en fréquence,
+* l'écart minimum entre deux fréquences.
+
+:::
+
+### Analyse
+
+1. Déduire des réponses précédentes les réglages préliminaires à effectuer sur l'analyseur de spectre pour visualiser toute la bande FM.
+2. Affiner les réglages afin de visualiser les différentes raies spectrales.
+3. Relever la puissance pour deux radios. Estimer les pertes en espace libre pour chaque radio.
+

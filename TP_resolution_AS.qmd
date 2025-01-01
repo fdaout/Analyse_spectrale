@@ -1,0 +1,158 @@
+# Signal "composite" {.unnumbered}
+
+:::{.callout-note title="Objectifs" icon="false" collapse="true"}
+
+À la fin de ce TP, vous serez capable de régler correctement :
+
+* le niveau de référence (Ref. Lev.)
+* le filtre de résolution (RBW)
+* le temps de balayage (SWT)
+
+L'objectif est d'identifier l'influence de ces paramètres et de s'assurer que leur réglage est correctement choisi afin d'éviter de faire une mauvaise mesure. 
+
+Dans tout ce TP, le filtre vidéo VBW est choisi en fonction du filtre de résolution (VBW = RBW/100).
+
+:::
+
+:::{.callout-caution title="Consignes de SÉCURITÉ concernant l'utilisation de l'analyseur de spectre" icon="true" collapse="false" }
+
+1. Certains analyseurs de spectre ne supportent pas un signal continu (DC) sur l'entrée RF : NE PAS RETIRER LE DC BLOCK SUR L'ENTRÉE RF de l'analyseur de spectre.
+2. NE JAMAIS DÉPASSER LA PUISSANCE MAXIMALE ADMISSIBLE SUR L'ENTRÉE RF de l'analyseur de spectre.
+3. Une bonne habitude est de lire les spécifications et les consignes de sécurité avant d'utiliser un appareil de mesure RF !
+
+:::
+
+**Matériel**
+
+* Synthétiseur R&S SMB100A
+* Synthétiseur HP 8648A ou HP 8656B
+* Combinateur
+* Analyseur de spectre R&S FSP
+* Adaptateurs N-SMA
+* Cordons SMA
+
+Une carte ADALM PLUTO permet de remplacer les deux synthétiseurs et le combinateur. 
+
+## Analyse d'un spectre
+
+![Spectre d'un signal composite](figures/Resolution_1.png){#fig-resol_1 width=70% .lightbox}
+
+Il s'agit, dans cette partie, de créer un signal composite dont le spectre d'amplitude est représenté sur la @fig-resol_1
+
+### Analyse théorique
+
+À partir de la @fig-resol_1 :
+
+1. Déterminer la nature du spectre (bilatéral, unilatéral, d'amplitude, de phase ?). 
+
+2. Déterminer les réglages de l'analyseur de spectre (atténuateur, niveau de référence, span, RBW, VBW, fréquence centrale, type de l'appareil de mesure). Il s'agit de la configuration de l'appareil (Spectrum Analyzer Setup).
+
+3. Rechercher dans la documentation les caractéristiques de l'analyseur de spectre utilisé (FSP3) :
+
+| Paramètre                      | Valeur        |
+| ------------------------------ | ------------- |
+| Plage de fréquence             | 9 kHz à 3 GHz |
+| Bandes passantes de résolution |               |
+| Bandes passantes vidéo         |               |
+| Niveau de référence (dBm)      |               |
+: Caractéristiques de l'analyseur de spectre {#tbl-setup1}
+
+4. Déterminer le nombre de raies et leurs caractéristiques (fréquence, puissance)
+
+5. Exprimer le signal sous forme d'une série de cosinus telle que :
+
+   $$
+   u(t) = A_1 \cos(2\pi f_1t) + ... + A_n \cos(2\pi f_nt)
+   $${#eq-resol1}
+
+### Expérimentation
+
+1. Proposer un montage qui permet d'obtenir ce signal. Pour cela, on utilisera un combinateur (additionneur).
+
+2. Indiquer les réglages des différents appareils de mesure.
+
+3. Réaliser le montage et vérifier vos réglages.
+
+4. Réaliser une fiche de mesure qui permet de synthétiser votre mesure. Cette fiche doit permettre à n'importe qui de refaire votre mesure afin de retrouver vos résultats. Il convient donc d'indiquer :
+   1. un schéma du montage (photographie),
+   2. les références des appareils de mesures (y compris la référence IUT),
+   3. tous les réglages des appareils de mesure,
+   4. vos résultats,
+   5. vos commentaires sur la mesure.
+
+## Résolution spectrale d'un analyseur de spectre
+
+Dans cette partie, nous allons observer l'effet du filtre de résolution (RBW) lorsque l'on mesure deux signaux de fréquences différentes mais d'amplitudes identiques. La @fig-resol_2 permet de réaliser cette étude.
+
+![Effet du RBW](figures/Resolution_2.png){#fig-resol_2 width=70% .lightbox}
+
+### Influence du RBW
+
+1. Réaliser le montage de la @fig-resol_2. Régler le premier générateur pour voir une fréquence de 800 MHz avec une amplitude de -20 dBm. Le second générateur est réglé pour un signal à une fréquence de 801 MHz avec une amplitude de -20 dBm.
+
+2. Après avoir fait un "preset" sur l'analyseur de spectre, régler uniquement la fréquence centrale, le span ainsi que le niveau de référence pour pouvoir visualiser le signal. Régler le rapport RBW/VBW : pour cela, appuyer sur le bouton BW, puis aller dans le menu COUPLING RATIO, choisir le menu RBW/VBW MANUAL. Choisir la valeur 100.
+   1. Indiquez la configuration de l'analyseur de spectre.
+   2. Commentez vos observations.
+
+3. En faisant varier le RBW (bouton BW) sans modifier les autres réglages, compléter le @tbl-rbw_2, Que faut-il en conclure ?
+
+| RBW                    | 10 MHz | 3 MHz | 1 MHz | 300 kHz | 100 kHz | 30 kHz | 10 kHz |
+| ---------------------- | ------ | ----- | ----- | ------- | ------- | ------ | ------ |
+| Fréquence f1 (MHz)     |        |       |       |         |         |        |        |
+| Puissance P1 (dBm)     |        |       |       |         |         |        |        |
+| Fréquence f2 (MHz)     |        |       |       |         |         |        |        |
+| Puissance P2 (dBm)     |        |       |       |         |         |        |        |
+| Creux (dBm)            |        |       |       |         |         |        |        |
+| Temps de balayage (ms) |        |       |       |         |         |        |        |
+:Influence du RBW {#tbl-rbw_2}
+
+4. Relation entre le temps de balayage, le RBW et le SPAN : il y a un compromis à faire entre le RBW et le temps de balayage. Si on réduit le RBW, le temps de balayage augmente. Cela est dû au temps nécessaire pour que le signal s'établisse dans le filtre. Généralement, on admet :
+
+$$
+\text{Temps de balayage} = k \times \frac{\text{SPAN}}{\text{RBW} \times \text{VBW}}
+$${#eq-resol2}
+
+avec k variant en fonction du type de filtre.
+
+Déterminer la valeur de k pour les différentes valeurs de RBW < 1MHz.
+
+Généralement, les analyseurs de spectre calculent automatiquement le temps de balayage en fonction du RBW, mais ils autorisent de choisir indépendamment le temps de balayage et le RBW. Dans ce cas, la réponse de l'analyseur peut être non calibrée et il peut y avoir des erreurs sur la fréquence et sur l'amplitude. Pour observer ce phénomène, mettre le générateur 2 sur OFF et choisir une configuration avec un temps de balayage trop rapide ; 
+
+* Que se passe-t-il pour les valeurs de la puissance et de la fréquence ? Après avoir fait cette manipulation, penser à remettre le temps de balayage en mode automatique.
+
+## Dynamique d'un analyseur de spectre
+
+Le premier élément important d'un analyseur de spectre est l'atténuateur interne. Son rôle est de s'assurer que le signal qui entre dans le mélangeur possède le niveau optimal pour éviter une surcharge, une compression et une distorsion. Comme l'atténuateur est un circuit de protection de l'analyseur de spectre, il est généralement réglé automatiquement en fonction du niveau de référence. Toutefois, une sélection manuelle est aussi possible par paliers. Le palier dépend du type d'analyseur de spectre.
+
+Le niveau de référence est le niveau maximum de puissance (ou de tension) que l'on cherche à visualiser. Il correspond à la ligne horizontale supérieure de l'écran. Il est possible de choisir l'unité affichée (dBm, dBV, W, ou V).
+
+En utilisant le montage de la @fig-resol_2, régler le synthétiseur SMB100A sur -20 dBm avec une fréquence de 800 MHz et le synthétiseur HP8648A sur -70 dBm pour une fréquence de 800,075 MHz.
+
+1. Quels sont les réglages qui permettent d'observer correctement ce signal ? Indiquer la configuration de l'analyseur de spectre (niveau de référence, atténuateur, span, fréquence centrale, RBW, VBW)
+
+2. Le RBW est maintenant réglé à 30 kHz. Le synthétiseur HP8648A est réglé à -20 dBm.
+   1. Est-il possible de distinguer les deux raies ? (un critère consiste à mesurer l'amplitude du creux. Il doit être inférieure de 3dB au pic le plus faible pour pouvoir distinguer les deux signaux).
+   2. Diminuer la puissance sur le générateur HP8648A, jusqu'à ce qu'on ne puisse plus distinguer les deux raies. Quelle est cette valeur ?
+   3. Qu'observe-t-on pour une puissance de -70 dBm ?
+   4. Que faut-il faire pour observer les deux signaux ?
+   5. Refaire la même étude pour un RBW réglé à 10 kHz.
+
+3. Le RBW est maintenant réglé à 10 kHz. Nous allons chercher à déterminer la puissance minimum que notre analyseur de spectre peut mesurer (le plancher de bruit).
+   1. Quelle est la puissance minimale que l'on peut mesurer (le plancher de bruit) ?
+   2. Que devient cette puissance si on diminue le RBW d'un facteur 10 (1 kHz) ?
+   3. Comparer cette valeur à la valeur précédente. Que peut-on dire du plancher de bruit ? Que peut-on dire du temps de balayage ?
+
+4. Sur quel(s) paramètre(s) peut-on agir pour augmenter la sensibilité ?
+
+## Application : Mesure du gabarit d'un filtre passe-bande avec la fonction Maximum Hold
+
+La fonction Maximum Hold peut être d'une utilité importante lorsque vous mesurez la réponse fréquentielle d'éléments passifs tels qu'un filtre. Pour cela, il est nécessaire de générer un signal avec un générateur RF (@fig-resol_3) et d'enregistrer la réponse du DUT (Device Under Test : le filtre ici) avec votre analyseur de spectre. Comme la vitesse de balayage du générateur et celle de l'analyseur ne sont pas synchrones, la fonction Maximum Hold permet de tracer la réponse du DUT (généralement après deux à trois balayages).
+
+![Mesure du gabarit d'un filtre](figures/Resolution_3.png){#fig-resol_3 width=70% .lightbox}
+
+### Expérimentation
+
+1. Connecter à l'entrée de l'analyseur de spectre un filtre SHP-700+
+2. Régler le SMB100A pour qu'il réalise un balayage de 100 MHz à 3 GHz
+3. Analyser le résultat
+
